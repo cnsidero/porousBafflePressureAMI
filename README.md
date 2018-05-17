@@ -5,25 +5,25 @@ This boundary condition provides a jump condition, using the cyclicAMI condition
 
 where
 
-|       |               |
-|-------|---------------|
-|p -     | pressure [Pa] |
-|&rho; -  | density [kg/m3] |
-|&mu; -  | laminar viscosity [Pa s] |
-|I -     | inertial coefficient |
-|D -     | Darcy coefficient |
-|L -     | porous media thickness in the flow direction [m] |
+|Variable | Description |
+|:------|:--------------|
+|p      | pressure [Pa] |
+|&rho;   | density [kg/m3] |
+|&mu;   | laminar viscosity [Pa s] |
+|I      | inertial coefficient |
+|D      | Darcy coefficient |
+|L      | porous media thickness in the flow direction [m] |
 
 
 ### Patch usage
-```
+
 |Property   | Description            | Required | Default value 
-|-----------|------------------------|----------|---------------
+|:----------|:-----------------------|:---------|:--------------
 |patchType  | should be cyclicAMI    | yes      | 
 |D          | Darcy coefficient      | yes      | 0 
 |I          | inertial coefficient   | yes      | 0 
 |L          | porous media thickness | yes      | 0 
-```
+
 <br>
 Example of the boundary condition specification:
 
@@ -40,7 +40,7 @@ myPatch
 }
 ```
 ## Compilation
-To compile, provide the path to Caelus site\_scons directory. E.g.
+To compile, provide the path to the Caelus `site_scons` directory. E.g.
 
 ```
 scons --site-dir="/home/user/Caelus/Caelus-8.04/site_scons" install
@@ -60,7 +60,7 @@ libs ( "libporousBafflePressureAMIFvPatchField.so" );
 
 ## License
 
-This software is compatible with Caelus.
+This software is compatible with <a href="https://bitbucket.org/appliedccm/caelus-contributors">Caelus</a>.
 
 It is released under the GPL: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See the GNU General Public License for more details.
 

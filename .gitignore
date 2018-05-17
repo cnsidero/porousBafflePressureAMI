@@ -1,0 +1,51 @@
+# SCon database file
+.sconsign.dblite
+
+# ignore files generated during build
+.build
+
+# build folders - anywhere
+platforms/
+lnInclude/
+build/
+
+#Windows stuff
+*.dwf
+*.pdb
+*.exp
+*.dll
+*.exe
+
+#Mac and Linux stuff
+*.[oa]
+*.la
+*.so
+*.os
+*.jar
+*.obj
+*.lib
+*.dylib
+*.pyc
+
+# editor and misc backup files - anywhere
+*~
+.*~
+*.bak
+*.bak[0-9][0-9]
+*.orig
+*.orig[0-9][0-9]
+*.DS_store
+\#*\#
+
+# file-browser settings - anywhere
+.directory
+
+# log file from testing
+*.log
+
+# source packages - anywhere
+*.tar.*
+*.tar
+*.tgz
+*.gtgz
+ 

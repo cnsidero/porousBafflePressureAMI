@@ -22,7 +22,7 @@ where
 |patchType  | should be cyclicAMI    | yes      | 
 |D          | Darcy coefficient      | yes      | 0 
 |I          | inertial coefficient   | yes      | 0 
-|L          | porous media thickness | yes      | 0 
+|length     | porous media thickness | yes      | 0 
 
 <br>
 Example of the boundary condition specification:
@@ -35,7 +35,7 @@ myPatch
     jump            uniform 0;
     I               10000;
     D               0.001;
-    L               0.1;
+    length          0.1;
     value           uniform 0;
 }
 ```

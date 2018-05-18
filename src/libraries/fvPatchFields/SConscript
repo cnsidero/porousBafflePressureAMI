@@ -1,6 +1,6 @@
 # -*- mode: python -*-
 
-from build import build_user_lib
+from build import build_lib
 Import('env')
 
 target = 'porousBafflePressureAMIFvPatchField'
@@ -27,7 +27,7 @@ caelus_libs = [
 'incompressibleTurbulenceModel'
 ]
 
-build_user_lib(env,
+build_lib(env,
           target=target,
           sources=sources,
           caelus_inc=caelus_inc,

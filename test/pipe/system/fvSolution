@@ -1,0 +1,57 @@
+/*-------------------------------------------------------------------------------*
+Caelus 8.04
+Web:   www.caelus-cml.com
+\*------------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+    class           dictionary;
+    location        "system";
+    object          fvSolution;
+}
+
+//------------------------------------------------------------------------------
+
+solvers
+{
+    "p.*"
+    {
+        solver          GAMG;
+        agglomerator    faceAreaPair;
+        nCellsInCoarsestLevel 10;
+        mergeLevels     1;
+        smoother        SSGS;
+
+        tolerance       0;
+        relTol          0.01;
+    }
+
+    U
+    {
+        solver          PBiCGStab;
+        preconditioner  USGS;
+
+        tolerance       0;
+        relTol          0.1;
+    }
+
+}
+
+SIMPLE
+{
+    nNonOrthogonalCorrectors 0;
+    pRefCell        0;
+    pRefValue       0;
+    consistent      true;
+    correctionForm  true;
+}
+
+// relexation factors
+
+relaxationFactors
+{
+    p       1.0;
+    U       0.7;
+}

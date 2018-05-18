@@ -1,0 +1,69 @@
+/*-----------------------------------------------------------------------------*
+Caelus 8.04
+Web:   www.caelus-cml.com
+\*-----------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version           2.0;
+    format            ascii;
+    class             dictionary;
+    location          "system";
+    object            controlDict;
+}
+
+//-------------------------------------------------------------------------------
+
+application           simpleSolver;
+
+startFrom             startTime;
+
+startTime             0;
+
+stopAt                endTime;
+
+endTime               500;
+
+deltaT                1;
+
+writeControl          runTime;
+
+writeInterval         500;
+
+purgeWrite            0;
+
+writeFormat           ascii;
+
+writePrecision        12;
+
+writeCompression      uncompressed;
+
+timeFormat            general;
+
+timePrecision         6;
+
+runTimeModifiable     true;
+
+
+libs (
+    "libporousBafflePressureAMIFvPatchField.so"
+    "libsimpleSwakFunctionObjects.so"
+    "libswakFunctionObjects.so"
+);
+
+functions
+{
+    pressure_drop
+    {
+        type patchExpression;
+        variables ( "p_out{patch'outlet}=sum(p*area())/sum(area());");
+        accumulations (
+            average
+        );
+        patches (
+            inlet
+        );
+        expression "p-p_out";
+        verbose true;
+    }
+}

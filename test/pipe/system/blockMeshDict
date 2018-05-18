@@ -1,0 +1,109 @@
+/*-----------------------------------------------------------------------------*
+Caelus 8.04
+Web:   www.caelus-cml.com
+\*-----------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 1;
+
+vertices
+(
+    (0.0  0.0  0.0)
+    (5.0  0.0  0.0)
+    (5.0  1.0  0.0)
+    (0.0  1.0  0.0)
+    (0.0  0.0  1.0)
+    (5.0  0.0  1.0)
+    (5.0  1.0  1.0)
+    (0.0  1.0  1.0)
+
+    (5.0  0.0  0.0)
+    (10.0  0.0  0.0)
+    (10.0  1.0  0.0)
+    (5.0  1.0  0.0)
+    (5.0  0.0  1.0)
+    (10.0  0.0  1.0)
+    (10.0  1.0  1.0)
+    (5.0  1.0  1.0)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (50 10 10) simpleGrading (1 1 1)
+    hex (8 9 10 11 12 13 14 15) (50 11 11) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (10 14 13 9)
+        );
+    }
+    baffleAMI-1
+    {
+        type cyclicAMI;
+        transform noOrdering;
+        neighbourPatch baffleAMI-2;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+    baffleAMI-2
+    {
+        type cyclicAMI;
+        transform noOrdering;
+        neighbourPatch baffleAMI-1;
+        faces
+        (
+            (8 12 15 11)
+        );
+    }
+    pipe
+    {
+        type wall;
+        faces
+        (
+            (0 3 2 1)
+            (4 5 6 7)
+            (3 7 6 2)
+            (1 5 4 0)
+            (8 11 10 9)
+            (12 13 14 15)
+            (11 15 14 10)
+            (9 13 12 8)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //
+

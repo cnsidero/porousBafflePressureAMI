@@ -1,0 +1,32 @@
+
+tasks:
+  - clean_case:
+      remove_zero: yes
+      remove_mesh: yes
+      preserve: [ "0.no_baffle", "0.baffle" ]
+
+  - copy_tree:
+      src: "0.baffle"
+      dest: "0"
+
+  - run_command:
+      cmd_name: blockMesh
+
+  - run_command:
+      cmd_name: topoSet
+
+  - run_command:
+      cmd_name: refineMesh
+      cmd_args: "-overwrite"
+
+  - run_command:
+      cmd_name: renumberMesh
+      cmd_args: "-overwrite"
+
+  - run_command:
+      cmd_name: simpleSolver
+
+  - process_logs:
+      log_file: simpleSolver.log
+      plot_residuals: True
+

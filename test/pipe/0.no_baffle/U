@@ -1,0 +1,45 @@
+/*---------------------------------------------------------------------------*\
+ Caelus 8.04                                   
+ Web:      www.caelus-cml.com 
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (1 0 0);
+
+boundaryField
+{
+    baffleAMI-1
+    {
+        type            cyclicAMI;
+    }
+    baffleAMI-2
+    {
+        type            cyclicAMI;
+    }
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (1 0 0);
+    }
+    outlet
+    {
+        type            zeroGradient;
+    }
+    pipe
+    {
+        type            slip;
+    }
+}
+
+
+// ************************************************************************* //
